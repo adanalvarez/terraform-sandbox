@@ -1,0 +1,13 @@
+{
+    "aws_region": "us-east-1",
+    "vpc_cidr": "10.0.0.0/16",
+    "vpc_name": "main-vpc",
+    "subnet_az1_cidr": "10.0.1.0/24",
+    "subnet_az1_name": "main-subnet-az1",
+    "subnet_az2_cidr": "10.0.2.0/24",
+    "subnet_az2_name": "main-subnet-az2",
+    "s3_bucket_name": "test-s3-cloudtrail-network",
+    "s3_trail_bucket_name": "test-s3-cloudtrail-network-trail",
+    "ssm_instance_name": "ssm-ec2-instance"
+  }
+  
