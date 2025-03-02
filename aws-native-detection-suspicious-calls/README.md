@@ -38,12 +38,16 @@ This setup enables three different approaches to alert on IAM user creation:
    ```sh
    terraform init
    ```
-3. Review and update `terraform.tfvars` (add you email address).
+3. Update terraform.tfvars.json.example with you email and rename it to terraform.tfvars.json
 4. Apply the configuration:
    ```sh
    terraform apply -auto-approve
    ```
 5. Confirm the SNS email subscription by clicking the confirmation link sent to your email.
+
+Once the deployment is done, you can test the notifications by creating a new IAM user.
+
+The creation of a new IAM user should trigger 3 notifications, one per each scenario.
 
 ## Cleanup
 
