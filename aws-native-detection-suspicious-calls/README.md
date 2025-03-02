@@ -56,3 +56,5 @@ To remove all deployed resources, run:
 ```sh
 terraform destroy -auto-approve
 ```
+
+This code was used for the blog post: https://medium.com/@adan.alvarez/diy-evaluating-aws-native-approaches-for-detecting-suspicious-api-calls-c6e05de97a49
