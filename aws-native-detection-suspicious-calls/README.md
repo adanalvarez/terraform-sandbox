@@ -1,5 +1,8 @@
 # AWS User Creation Alerting - Terraform Configuration
 
+> [!NOTE]  
+> This code was used for the blog post: https://medium.com/@adan.alvarez/diy-evaluating-aws-native-approaches-for-detecting-suspicious-api-calls-c6e05de97a49
+
 ## Overview
 
 This Terraform configuration sets up an AWS-native alerting system to detect and notify on IAM user creation events. The setup utilizes multiple AWS services to explore different alerting methods, including EventBridge, CloudTrail, CloudWatch, S3, Lambda, and SNS.
@@ -56,5 +59,3 @@ To remove all deployed resources, run:
 ```sh
 terraform destroy -auto-approve
 ```
-
-This code was used for the blog post: https://medium.com/@adan.alvarez/diy-evaluating-aws-native-approaches-for-detecting-suspicious-api-calls-c6e05de97a49
