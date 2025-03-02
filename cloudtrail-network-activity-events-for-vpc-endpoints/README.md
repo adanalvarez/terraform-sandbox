@@ -1,8 +1,5 @@
 # CloudTrail Network Activity Events for VPC Endpoints
 
-> [!NOTE]  
-> This code was used for the blog post: https://medium.com/@adan.alvarez/diy-using-semgrep-with-llms-to-improve-code-reviews-d43d0584b34f
-
 This Terraform configuration deploys an AWS environment to test the new CloudTrail network activity events feature for VPC endpoints. The deployment includes:
 
 - VPC & Private Subnet: A VPC with a dedicated private subnet.
