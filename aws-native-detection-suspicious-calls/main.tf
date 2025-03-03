@@ -233,8 +233,49 @@ resource "aws_cloudwatch_event_rule" "user_creation_rule" {
     })
 }
 
+# Eventbridge rule to detect ses ListIdentities
+resource "aws_cloudwatch_event_rule" "ses_list_identities_rule" {
+    name        = "SESListIdentitiesRule"
+    description = "Trigger on SES ListIdentities"
+    state       = "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"
+
+    event_pattern = jsonencode({
+        source = ["aws.ses"]
+        detail-type = ["AWS API Call via CloudTrail"]
+        detail = {
+            eventSource = ["ses.amazonaws.com"]
+            eventName   = ["ListIdentities"]
+        }
+    })
+}
+
+resource "aws_cloudwatch_event_target" "ses_list_rule_sns_target" {
+    rule      = aws_cloudwatch_event_rule.ses_list_identities_rule.name
+    target_id = "SendToSNS"
+    arn       = aws_sns_topic.user_creation_topic.arn
+}
+
 resource "aws_cloudwatch_event_target" "sns_target" {
     rule      = aws_cloudwatch_event_rule.user_creation_rule.name
     target_id = "SendToSNS"
     arn       = aws_sns_topic.user_creation_topic.arn
+}
+
+data "aws_iam_policy_document" "sns_topic_policy" {
+  statement {
+    effect  = "Allow"
+    actions = ["SNS:Publish"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["events.amazonaws.com", "lambda.amazonaws.com", "logs.amazonaws.com"]
+    }
+
+    resources = [aws_sns_topic.user_creation_topic.arn]
+  }
+}
+
+resource "aws_sns_topic_policy" "default" {
+  arn    = aws_sns_topic.user_creation_topic.arn
+  policy = data.aws_iam_policy_document.sns_topic_policy.json
 }
